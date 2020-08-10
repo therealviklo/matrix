@@ -41,13 +41,33 @@ public:
 	// Tillgång med gränskontroller.
 	T& at(unsigned int x, unsigned int y)
 	{
-		return data.at(y + x * height);
+		if (x >= 0 &&
+			x < width &&
+			y >= 0 &&
+			y < height)
+		{
+			return data[y + x * height];
+		}
+		else
+		{
+			throw std::out_of_range("Matrix cell out of range");
+		}
 	}
 
 	// Const-tillgång med gränskontroller.
 	const T& at(unsigned int x, unsigned int y) const
 	{
-		return data.at(y + x * height);
+		if (x >= 0 &&
+			x < width &&
+			y >= 0 &&
+			y < height)
+		{
+			return data[y + x * height];
+		}
+		else
+		{
+			throw std::out_of_range("Matrix cell out of range");
+		}
 	}
 
 	// Ändrar (x, y) till t om det är en giltig position, annars händer inget.
